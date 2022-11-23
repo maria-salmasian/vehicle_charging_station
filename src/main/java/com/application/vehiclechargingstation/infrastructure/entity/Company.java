@@ -21,6 +21,7 @@ public class Company {
     @Column(name = "name")
     private String name;
 
+    @NotNull
     @Column(name = "parent_company_id")
     private Integer parentCompany;
 
