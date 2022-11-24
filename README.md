@@ -23,7 +23,6 @@ Tables:
 # Libraries used
 Hibernate Validation API                          
 Lombok                         
-JSON Library
 
 # External tools
 Postman
