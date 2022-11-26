@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
-    @Query(value = "WITH RECURSIVE post_comment_score(company_id, is_deleted, name, parent_company_id)\n" +
+    @Query(value = "WITH RECURSIVE vcs(company_id, is_deleted, name, parent_company_id)\n" +
             "                   AS (\n" +
             "                   SELECT company_id, is_deleted, name, parent_company_id\n" +
             "                       FROM vehicle_charging.company\n" +
@@ -21,7 +21,7 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
             "                       FROM vehicle_charging.company cmp\n" +
             "                                INNER JOIN vehicle_charging.company cmp2 ON cmp.parent_company_id = cmp2.company_id)\n" +
             "SELECT company_id, is_deleted, name, parent_company_id\n" +
-            "FROM post_comment_score\n" +
+            "FROM vcs\n" +
             "ORDER BY company_id",  nativeQuery = true)
     List<Company> parentAndChildren(@Param("companyId") Integer companyId);
 }
